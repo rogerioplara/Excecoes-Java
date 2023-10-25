@@ -86,18 +86,32 @@ public class Main {
         LocalDate checkIn = LocalDate.parse(sc.next(), pattern);
         System.out.print("Check-out date (dd/MM/yyyy): ");
         LocalDate checkOut = LocalDate.parse(sc.next(), pattern);
-        Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
-        System.out.println(reservation);
-        System.out.println();
 
-        System.out.println("Enter data to update the reservation: ");
-        System.out.print("Check-in date (dd/MM/yyyy): ");
-        checkIn = LocalDate.parse(sc.next(), pattern);
-        System.out.print("Check-out date (dd/MM/yyyy): ");
-        checkOut = LocalDate.parse(sc.next(), pattern);
-        reservation.updateDates(checkIn, checkOut);
-        System.out.println(reservation);
+        if(!checkOut.isAfter(checkIn)){
+            System.out.println("Error in reservation: Check-out date must be after check-in date");
+        } else {
+            Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
+            System.out.println(reservation);
+            System.out.println();
 
+            System.out.println("Enter data to update the reservation: ");
+            System.out.print("Check-in date (dd/MM/yyyy): ");
+            checkIn = LocalDate.parse(sc.next(), pattern);
+            System.out.print("Check-out date (dd/MM/yyyy): ");
+            checkOut = LocalDate.parse(sc.next(), pattern);
+
+            LocalDate now = LocalDate.now();
+
+            if (checkIn.isBefore(now) || checkOut.isBefore(now)){
+                System.out.println("Error in reservation: dates must be future");
+            } else if(!checkOut.isAfter(checkIn)) {
+                System.out.println("Error in reservation: Check-out date must be after check-in date");
+            } else {
+                reservation.updateDates(checkIn, checkOut);
+                System.out.println(reservation);
+            }
+
+        }
 
         sc.close();
     }
