@@ -72,6 +72,21 @@ public class Main {
      *      enums
      *      exception
      *      services
+     *
+     * Cláusula throws: propaga a exceção ao invés de tratar o erro;
+     * Cláusula throw: lança a exceção / "corta" o método;
+     *
+     * Exception: compilador obriga a tratar ou propagar;
+     * RuntimeException: compilador não obriga
+     *
+     * O modelo de tratamento de exceções permite que erros sejam tratados de forma consistente e flexível;
+     * Vantagens:
+     *  - lógica delegada;
+     *  - construtores podem ter tratamento de exceções;
+     *  - possibilidade de auxílio do compilador (Exception);
+     *  - código mais simples, não já aninhamento de condicionais: a qualquer momento que uma exceção
+     * for disparada, a execução é interrompida e cai no bloco catch correspondente;
+     *  - é possível capturar inclusive outras exceções de sistema;
      */
 
     // Problema exemplo
